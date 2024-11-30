@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLORA - Motivational Chat</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff;
+      color: #333;
+      padding: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #e63946;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 400;
+      color: #444;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin: 50px 0;
+      font-size: 24px;
+      text-align: center;
+      color: #222;
+    }
+
+    .response-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 20px;
+    }
+
+    .response {
+      border: 1px solid #e63946;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .response:hover {
+      background-color: #e63946;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+
+      h2 {
+        font-size: 14px;
+      }
+
+      .question {
+        font-size: 20px;
+        margin: 30px 0;
+      }
+
+      .response {
+        font-size: 14px;
+        padding: 8px 15px;
+        margin-bottom: 12px;
+      }
+
+      footer {
+        font-size: 10px;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <h1>F. L. O. R. A</h1>
+  <h2>Friendly Language for Optimism and Resilient Assistance</h2>
+
+  <!-- Question Area -->
+  <div class="question" id="question">
+    Are you looking for motivation?
+  </div>
+
+  <!-- Response Buttons -->
+  <div class="response-container" id="response-container">
+    <div class="response" onclick="handleResponse('Yes, I feel stuck')">Yes, I feel stuck</div>
+    <div class="response" onclick="handleResponse('No, I just need a push')">No, I just need a push</div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    v1.21.35:28.11.24 - Anonymous Chat System
+  </footer>
+
+  <script>
+    // Handle User Responses
+    function handleResponse(userResponse) {
+      const questionElement = document.getElementById('question');
+      const responseContainer = document.getElementById('response-container');
+
+      // Extended predefined responses based on user input
+      const predefinedResponses = {
+        "Yes, I feel stuck": {
+          question: "Would you like a motivational story or a quick tip?",
+          options: ["Story, please", "Just a tip"]
+        },
+        "No, I just need a push": {
+          question: "Would you like advice to stay on track or an inspiring quote?",
+          options: ["Advice, please", "An inspiring quote"]
+        },
+        "Story, please": {
+          question: "Here’s an inspiring story: Thomas Edison failed 1,000 times before creating the lightbulb. Failure is just a step toward success!",
+          options: ["That’s inspiring!", "Got it, thanks!"]
+        },
+        "Just a tip": {
+          question: "Here’s a tip: Break big goals into smaller, manageable tasks. Focus on one small win at a time!",
+          options: ["That’s helpful!", "Got it, thanks!"]
+        },
+        "Advice, please": {
+          question: "Advice: Celebrate small victories. Every step forward is progress toward your goal!",
+          options: ["Great advice!", "Got it, thanks!"]
+        },
+        "An inspiring quote": {
+          question: "Quote: 'Believe you can, and you’re halfway there.' –Theodore Roosevelt",
+          options: ["Love it!", "Got it, thanks!"]
+        },
+        "That’s inspiring!": {
+          question: "Would you like to hear another motivational story or end the chat?",
+          options: ["Another story, please", "End chat"]
+        },
+        "Got it, thanks!": {
+          question: "You’re welcome! Do you need more motivation or want to end the chat?",
+          options: ["More motivation", "End chat"]
+        },
+        "Another story, please": {
+          question: "Here’s another: Oprah Winfrey was fired from her first TV job but went on to become a media mogul. Don’t let setbacks stop you!",
+          options: ["That’s amazing!", "End chat"]
+        },
+        "More motivation": {
+          question: "Here’s a tip: Surround yourself with positive people who lift you up. Their energy will inspire you to keep going!",
+          options: ["Thanks, FLORA!", "End chat"]
+        },
+        "That’s amazing!": {
+          question: "One last story: Colonel Sanders started KFC at age 65 after being rejected 1009 times. It’s never too late to chase your dreams!",
+          options: ["Incredible!", "End chat"]
+        },
+        "Thanks, FLORA!": {
+          question: "I’m always here to help! Keep believing in yourself. Goodbye!",
+          options: []
+        },
+        "End chat": {
+          question: "Thank you for chatting with FLORA. Remember, you are capable of amazing things!",
+          options: []
+        }
+      };
+
+      // Update the UI based on the user's response
+      const nextInteraction = predefinedResponses[userResponse];
+      if (nextInteraction) {
+        // Update the question
+        questionElement.innerText = nextInteraction.question;
+
+        // Update the response options
+        responseContainer.innerHTML = "";
+        nextInteraction.options.forEach(option => {
+          const responseButton = document.createElement('div');
+          responseButton.className = 'response';
+          responseButton.innerText = option;
+          responseButton.onclick = () => handleResponse(option);
+          responseContainer.appendChild(responseButton);
+        });
+      } else {
+        // End the chat
+        questionElement.innerText = "Thank you for chatting with FLORA. See you again!";
+        responseContainer.innerHTML = "";
+      }
+    }
+  </script>
+</body>
+</html>
