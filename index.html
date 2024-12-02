@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FLORA - Motivational Chat</title>
+  <title>FLORA - Resilient Assistance Support</title>
   <style>
     /* General Styles */
     * {
@@ -19,7 +19,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #ffffff;
+      background-color: #f5f5f5;
       color: #333;
       padding: 10px;
     }
@@ -40,8 +40,8 @@
     }
 
     .question {
-      margin: 50px 0;
-      font-size: 24px;
+      margin: 20px 0;
+      font-size: 20px;
       text-align: center;
       color: #222;
     }
@@ -51,7 +51,7 @@
       flex-direction: column;
       width: 100%;
       max-width: 400px;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     .response {
@@ -88,8 +88,8 @@
       }
 
       .question {
-        font-size: 20px;
-        margin: 30px 0;
+        font-size: 18px;
+        margin: 20px 0;
       }
 
       .response {
@@ -112,100 +112,112 @@
 
   <!-- Question Area -->
   <div class="question" id="question">
-    Are you looking for motivation?
+    How are you feeling today?
   </div>
 
   <!-- Response Buttons -->
   <div class="response-container" id="response-container">
-    <div class="response" onclick="handleResponse('Yes, I feel stuck')">Yes, I feel stuck</div>
-    <div class="response" onclick="handleResponse('No, I just need a push')">No, I just need a push</div>
+    <div class="response" onclick="handleResponse('I feel great')">I feel great</div>
+    <div class="response" onclick="handleResponse('I am okay')">I am okay</div>
+    <div class="response" onclick="handleResponse('I feel stressed')">I feel stressed</div>
+    <div class="response" onclick="handleResponse('I am not sure')">I am not sure</div>
   </div>
 
   <!-- Footer -->
   <footer>
-    v1.21.35:28.11.24 - Anonymous Chat System
+    v2.0: Resilient Assistance Support Enabled
   </footer>
 
   <script>
-    // Handle User Responses
+    // Resilient Assistance Responses
     function handleResponse(userResponse) {
       const questionElement = document.getElementById('question');
       const responseContainer = document.getElementById('response-container');
 
-      // Extended predefined responses based on user input
+      // Define the adaptive response model
       const predefinedResponses = {
-        "Yes, I feel stuck": {
-          question: "Would you like a motivational story or a quick tip?",
-          options: ["Story, please", "Just a tip"]
+        "I feel great": {
+          question: "That's awesome! Would you like a success story or a productivity tip?",
+          options: ["Success story", "Productivity tip"]
         },
-        "No, I just need a push": {
-          question: "Would you like advice to stay on track or an inspiring quote?",
-          options: ["Advice, please", "An inspiring quote"]
+        "I am okay": {
+          question: "That’s good! Would you like to hear something motivational or share your thoughts?",
+          options: ["Motivational quote", "Share thoughts"]
         },
-        "Story, please": {
-          question: "Here’s an inspiring story: Thomas Edison failed 1,000 times before creating the lightbulb. Failure is just a step toward success!",
-          options: ["That’s inspiring!", "Got it, thanks!"]
+        "I feel stressed": {
+          question: "I’m here to help. Would you like stress relief tips or calming quotes?",
+          options: ["Stress relief tips", "Calming quotes"]
         },
-        "Just a tip": {
-          question: "Here’s a tip: Break big goals into smaller, manageable tasks. Focus on one small win at a time!",
-          options: ["That’s helpful!", "Got it, thanks!"]
+        "I am not sure": {
+          question: "That’s okay! Let’s start with a quote: 'Every day is a second chance.' What would you like next?",
+          options: ["More quotes", "A quick tip"]
         },
-        "Advice, please": {
-          question: "Advice: Celebrate small victories. Every step forward is progress toward your goal!",
-          options: ["Great advice!", "Got it, thanks!"]
+        "Success story": {
+          question: "Here’s a story: J.K. Rowling faced 12 rejections before publishing Harry Potter. Would you like to hear another?",
+          options: ["Yes, another story", "No, thanks"]
         },
-        "An inspiring quote": {
-          question: "Quote: 'Believe you can, and you’re halfway there.' –Theodore Roosevelt",
-          options: ["Love it!", "Got it, thanks!"]
+        "Productivity tip": {
+          question: "Tip: Break tasks into chunks and focus on one thing at a time. Need more tips?",
+          options: ["Yes, more tips", "No, thanks"]
         },
-        "That’s inspiring!": {
-          question: "Would you like to hear another motivational story or end the chat?",
-          options: ["Another story, please", "End chat"]
+        "Motivational quote": {
+          question: "Quote: 'Believe you can and you’re halfway there.' What else would you like?",
+          options: ["More quotes", "A story"]
         },
-        "Got it, thanks!": {
-          question: "You’re welcome! Do you need more motivation or want to end the chat?",
-          options: ["More motivation", "End chat"]
-        },
-        "Another story, please": {
-          question: "Here’s another: Oprah Winfrey was fired from her first TV job but went on to become a media mogul. Don’t let setbacks stop you!",
-          options: ["That’s amazing!", "End chat"]
-        },
-        "More motivation": {
-          question: "Here’s a tip: Surround yourself with positive people who lift you up. Their energy will inspire you to keep going!",
-          options: ["Thanks, FLORA!", "End chat"]
-        },
-        "That’s amazing!": {
-          question: "One last story: Colonel Sanders started KFC at age 65 after being rejected 1009 times. It’s never too late to chase your dreams!",
-          options: ["Incredible!", "End chat"]
-        },
-        "Thanks, FLORA!": {
-          question: "I’m always here to help! Keep believing in yourself. Goodbye!",
+        "Share thoughts": {
+          question: "Please type what’s on your mind:",
           options: []
         },
-        "End chat": {
-          question: "Thank you for chatting with FLORA. Remember, you are capable of amazing things!",
+        "Stress relief tips": {
+          question: "Tip: Try deep breathing for 5 minutes. Would you like more ideas?",
+          options: ["Yes, more tips", "No, I feel better"]
+        },
+        "Calming quotes": {
+          question: "Quote: 'You are stronger than you think.' Would you like another?",
+          options: ["Yes, another quote", "No, I feel calm"]
+        },
+        "Yes, another story": {
+          question: "Here’s another: Walt Disney was fired for lacking creativity. Now Disney inspires millions. Want more?",
+          options: ["More stories", "No, thanks"]
+        },
+        "More quotes": {
+          question: "Quote: 'The best way to predict the future is to create it.' Would you like another?",
+          options: ["Yes, more quotes", "No, I’m done"]
+        },
+        "No, I’m done": {
+          question: "Thank you for chatting with FLORA! Have a resilient day!",
           options: []
         }
       };
 
-      // Update the UI based on the user's response
+      // Find the next interaction based on user input
       const nextInteraction = predefinedResponses[userResponse];
+
       if (nextInteraction) {
         // Update the question
         questionElement.innerText = nextInteraction.question;
 
-        // Update the response options
+        // Update response buttons
         responseContainer.innerHTML = "";
-        nextInteraction.options.forEach(option => {
+        (nextInteraction.options || []).forEach(option => {
           const responseButton = document.createElement('div');
           responseButton.className = 'response';
           responseButton.innerText = option;
           responseButton.onclick = () => handleResponse(option);
           responseContainer.appendChild(responseButton);
         });
+
+        // Special handling for "Share thoughts"
+        if (userResponse === "Share thoughts") {
+          const input = document.createElement('textarea');
+          input.style.width = "100%";
+          input.style.height = "100px";
+          input.style.margin = "15px 0";
+          responseContainer.appendChild(input);
+        }
       } else {
-        // End the chat
-        questionElement.innerText = "Thank you for chatting with FLORA. See you again!";
+        // End the conversation
+        questionElement.innerText = "Thank you for chatting with FLORA. Stay resilient!";
         responseContainer.innerHTML = "";
       }
     }
